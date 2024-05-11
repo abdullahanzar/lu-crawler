@@ -1,5 +1,6 @@
+"use client";
+import DocumentUploadForm from "@/components/forms/forms";
 import { Button } from "@mui/material";
-import React from "react";
 
 export default function Contribute() {
   return (
@@ -18,21 +19,7 @@ export default function Contribute() {
       <div className="relative left-10 top-4 mt-4 text-2xl w-max">
         Wanna contribute anonymously?
       </div>
-      <div className="relative left-12 top-2 mt-4 text-[21px] w-max">
-        <Button
-          style={{
-            backgroundColor: "#D5C8C8",
-            color: "#000",
-            borderRadius: "12px",
-            marginTop: "12px",
-            padding: "12px",
-          }}
-          className="font-sans"
-          variant="contained"
-        >
-          Upload your files here then click submit
-        </Button>
-      </div>
+      <DocumentUploadForm />
       <div className="absolute right-10 bg-[#D5C8C8] top-56 mt-4 w-[35rem] rounded-lg">
         <div className="relative w-[34rem] p-4">
           <p className="font-sans text-xl">
