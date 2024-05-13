@@ -21,9 +21,9 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className={playfair.className}>
+      <body className={`${playfair.className} overflow-auto`}>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
