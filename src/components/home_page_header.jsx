@@ -13,7 +13,8 @@ export default function Home_page_header() {
     position: "absolute",
     objectFit: 'cover', // Ensures the image covers the entire container
     height: '20rem',    // Sets the height to 50 rem
-    width: '100%'      // Sets the width to 100% of the viewport width
+    width: '100%' ,     // Sets the width to 100% of the viewport width
+    right: 0,
   }}
 />
 
