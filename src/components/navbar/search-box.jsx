@@ -6,7 +6,7 @@ const filter = createFilterOptions();
 
 function SearchBox() {
   const [value, setValue] = useState();
-  const dataset = ["Question Papers"];
+  const dataset = ["BCA Question Papers", "", "", ""];
 
   return (
     <Autocomplete
@@ -81,7 +81,7 @@ function SearchBox() {
           label=""
           variant="outlined"
           className="font-playfair"
-          InputProps={{ ...params.InputProps, disableUnderline: true }}
+          InputProps={{ ...params.InputProps }}
           placeholder="Search Resources"
         />
       )}
