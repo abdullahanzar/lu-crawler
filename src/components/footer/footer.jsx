@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -65,7 +66,13 @@ function Footer() {
               Subscribe to our newsletter to get latest news across the old and
               the new campus.
             </p>
-            <input type="text" className="p-3 min-w-72 text-black rounded-2xl" placeholder="rahul@gmail.com"/>
+            <Tooltip title="Press enter to submit">
+              <input
+                type="text"
+                className="p-3 min-w-72 text-black rounded-2xl"
+                placeholder="lucrawler@gmail.com"
+              />
+            </Tooltip>
           </div>
           <div className="pt-4 pb-4">
             <p className="text-[#767676] pb-5 font-semibold text-base">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FormControl,
   InputLabel,
@@ -11,6 +11,10 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FileUpload from "./file-upload";
+import { createSupabaseBrowserClient } from "@/supabase/browserClient";
+import { notify } from "@/utils/notify";
+
+const supabase = createSupabaseBrowserClient();
 
 const validationSchema = Yup.object().shape({
   type: Yup.string().required("Type is required"),
@@ -22,25 +26,43 @@ const validationSchema = Yup.object().shape({
 });
 
 const MyForm = () => {
+  const [cloudinaryMetadata, setCloudinaryMetaData] = useState(null);
   const formik = useFormik({
     initialValues: {
       type: "",
       course: "",
       semester: "",
-      branch: "",
+      branch: "NA",
       name: "",
       description: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Handle form submission
-      console.log(values);
+    onSubmit: async (values) => {
+      if (!cloudinaryMetadata)
+        return notify.error("You haven't uploaded any document yet.");
+      notify.load("Uploading your document. Please give us a moment.");
+      const { error } = await supabase.from("documents").insert({
+        ...values,
+        cloudinary_metadata: cloudinaryMetadata.data,
+        ip_address: cloudinaryMetadata.ip,
+      });
+      notify.clearloading();
+      if (error) {
+        console.error(error);
+        return notify.error(
+          "We guess there was an error at our end. Please let us know the logged error message if the issue persists."
+        );
+      }
+      notify.timedSuccess(
+        "Thank you so much. Your document has been successfully uploaded.",
+        5000
+      );
     },
   });
 
   return (
     <div className="relative left-12 top-2 mt-4 text-[21px] w-3/6">
-      <FileUpload />
+      <FileUpload setCloudinaryMetaData={setCloudinaryMetaData} />
       <form onSubmit={formik.handleSubmit}>
         <FormControl fullWidth margin="normal" size="small">
           <InputLabel size="small">Type</InputLabel>

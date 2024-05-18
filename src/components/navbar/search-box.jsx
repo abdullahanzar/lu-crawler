@@ -81,7 +81,7 @@ function SearchBox() {
           label=""
           variant="outlined"
           className="font-playfair"
-          InputProps={{ ...params.InputProps, disableUnderline: true }}
+          InputProps={{ ...params.InputProps }}
           placeholder="Search Resources"
         />
       )}

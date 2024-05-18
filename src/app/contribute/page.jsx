@@ -1,6 +1,6 @@
 "use client";
+import InstructionsCard from "@/components/contribute/instructionsCard";
 import DocumentUploadForm from "@/components/forms/forms";
-import { Button } from "@mui/material";
 
 export default function Contribute() {
   return (
@@ -21,7 +21,7 @@ export default function Contribute() {
       </div>
       <div className="w-full h-max flex flex-row justify-between">
         <DocumentUploadForm />
-        <div className="bg-[#D5C8C8] mt-4 w-[35rem] mr-4 rounded-lg">
+        {/* <div className="bg-[#D5C8C8] mt-4 w-[35rem] mr-4 rounded-lg">
           <div className="relative w-[34rem] p-4">
             <p className="font-sans text-xl">
               General Guidelines to uploading documents
@@ -62,7 +62,8 @@ export default function Contribute() {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
+        <InstructionsCard />
       </div>
     </main>
   );
