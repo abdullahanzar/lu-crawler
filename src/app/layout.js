@@ -3,7 +3,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import { Toaster } from "react-hot-toast";
 
@@ -35,7 +35,12 @@ export default function RootLayout({ children }) {
             <Navbar />
             {children}
             <Footer />
-            <Toaster position="top-center" />
+            <Toaster
+              position="top-center"
+              containerStyle={{
+                fontFamily: "cursive",
+              }}
+            />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
