@@ -16,18 +16,33 @@ function FileUpload({ setCloudinaryMetaData }) {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const maxSize = 20 * 1024 * 1024; // 20 MB in bytes
+    const allowedTypes = [
+      "application/pdf",
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+    ];
 
     if (file) {
+      if (!allowedTypes.includes(file.type)) {
+        notify.error(
+          "Invalid file type. Please select a PDF, JPEG, JPG, or PNG file."
+        );
+        event.target.value = null; // Clear the input
+        return;
+      }
+
       if (file.size > maxSize) {
         notify.error(
           "File size exceeds 20 MB limit. Please choose a smaller file."
         );
-        event.target.value = null;
-      } else {
-        const selectedFile = event.target.files[0];
-        setFile(selectedFile);
-        event.target.value = null;
+        event.target.value = null; // Clear the input
+        return;
       }
+
+      const selectedFile = event.target.files[0];
+      setFile(selectedFile);
+      event.target.value = null;
     }
   };
 
