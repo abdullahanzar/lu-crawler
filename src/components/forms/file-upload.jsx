@@ -5,17 +5,30 @@ import { FilePresentRounded } from "@mui/icons-material";
 import { createSupabaseBrowserClient } from "@/supabase/browserClient";
 import { uploadToCloudinary } from "@/utils/file-uploader";
 import axios from "axios";
+import { notify } from "@/utils/notify";
 
 const supabase = createSupabaseBrowserClient();
 
 function FileUpload({ setCloudinaryMetaData }) {
   const [file, setFile] = useState(null);
-  let url = "";
+  const [url, setUrl] = useState("");
 
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
-    event.target.value = null;
+    const file = event.target.files[0];
+    const maxSize = 20 * 1024 * 1024; // 20 MB in bytes
+
+    if (file) {
+      if (file.size > maxSize) {
+        notify.error(
+          "File size exceeds 20 MB limit. Please choose a smaller file."
+        );
+        event.target.value = null;
+      } else {
+        const selectedFile = event.target.files[0];
+        setFile(selectedFile);
+        event.target.value = null;
+      }
+    }
   };
 
   const handleUnorganizedSubmit = async () => {
@@ -24,7 +37,7 @@ function FileUpload({ setCloudinaryMetaData }) {
         file,
         "lu-crawler-documents"
       );
-      url = cloudinary_metadata.secure_url;
+      setUrl(cloudinary_metadata.secure_url);
       const ip_address = await axios.get("/api/resolve-ip");
       setCloudinaryMetaData({
         data: cloudinary_metadata,
@@ -59,7 +72,11 @@ function FileUpload({ setCloudinaryMetaData }) {
             }}
             clickable
             onClick={() => {
-              window.open(url);
+              if (!url)
+                notify.success(
+                  "Please wait a few moments before clicking again."
+                );
+              else window.open(url);
             }}
           ></Chip>
         )}
