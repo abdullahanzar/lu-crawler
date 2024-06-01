@@ -107,6 +107,7 @@ const MyForm = () => {
             <MenuItem value="msc">M.Sc.</MenuItem>
             <MenuItem value="ba">BA</MenuItem>
             <MenuItem value="ma">MA</MenuItem>
+            <MenuItem value="bcom">B.Com.</MenuItem>
             <MenuItem value="others">Others</MenuItem>
           </Select>
           {formik.touched.course && formik.errors.course && (
@@ -131,6 +132,7 @@ const MyForm = () => {
               <MenuItem value="cse">CSE</MenuItem>
               <MenuItem value="cseai">CSE AI/ML</MenuItem>
               <MenuItem value="civil">Civil</MenuItem>
+              <MenuItem value="mechanical">Mechanical</MenuItem>
             </Select>
           </FormControl>
         )}
