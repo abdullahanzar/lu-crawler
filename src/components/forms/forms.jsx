@@ -153,7 +153,7 @@ const MyForm = () => {
                 Semester {index + 1}
               </MenuItem>
             ))}
-            <MenuItem>Not Applicable</MenuItem>
+            <MenuItem value="not-applicable">Not Applicable</MenuItem>
           </Select>
           {formik.touched.semester && formik.errors.semester && (
             <FormHelperText error>{formik.errors.semester}</FormHelperText>
