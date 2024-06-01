@@ -21,11 +21,12 @@ export default function Navbar() {
       </Link>
       <ul className="flex flex-row text-white">
         <li className="pl-8 cursor-pointer">Question Papers</li>
+        <li className="pl-8 cursor-pointer">Midsem Papers</li>
         <li className="pl-8 cursor-pointer">Notes</li>
         <li className="pl-8 cursor-pointer">Forms</li>
         <li className="pl-8 cursor-pointer">News</li>
       </ul>
-      <SearchBox />
+      {/*<SearchBox />*/}
       <NavbarButtons />
     </div>
   );
