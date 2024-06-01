@@ -6,6 +6,7 @@ import { createSupabaseBrowserClient } from "@/supabase/browserClient";
 import { uploadToCloudinary } from "@/utils/file-uploader";
 import axios from "axios";
 import { notify } from "@/utils/notify";
+import { compressPDF } from "@/utils/file-compressor";
 
 const supabase = createSupabaseBrowserClient();
 
@@ -13,9 +14,9 @@ function FileUpload({ setCloudinaryMetaData }) {
   const [file, setFile] = useState(null);
   const [url, setUrl] = useState("");
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    const maxSize = 20 * 1024 * 1024; // 20 MB in bytes
+    const maxSize = 10 * 1024 * 1024; // 10 MB in bytes
     const allowedTypes = [
       "application/pdf",
       "image/jpeg",
@@ -32,15 +33,29 @@ function FileUpload({ setCloudinaryMetaData }) {
         return;
       }
 
+      let compressedFile;
       if (file.size > maxSize) {
-        notify.error(
-          "File size exceeds 20 MB limit. Please choose a smaller file."
-        );
-        event.target.value = null; // Clear the input
-        return;
+        try {
+          notify.load("Please wait while we try to compress your file.");
+          compressedFile = await compressPDF(file);
+          notify.clearloading();
+          if (compressedFile.size > maxSize) {
+            event.target.value = null;
+            return notify.error(
+              "Your file exceeds 10 MB, please compress your file and then try again."
+            );
+          }
+        } catch (e) {
+          console.log(e);
+          notify.error(
+            "We couldn't compress your file. Please compress the file to below 10 MB then try again."
+          );
+        }
       }
 
-      const selectedFile = event.target.files[0];
+      const selectedFile = compressedFile
+        ? compressedFile
+        : event.target.files[0];
       setFile(selectedFile);
       event.target.value = null;
     }
