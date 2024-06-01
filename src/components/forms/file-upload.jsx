@@ -39,10 +39,12 @@ function FileUpload({ setCloudinaryMetaData }) {
           notify.load("Please wait while we try to compress your file.");
           compressedFile = await compressPDF(file);
           notify.clearloading();
-          if (compressedFile.size > maxSize)
+          if (compressedFile.size > maxSize) {
+            event.target.value = null;
             return notify.error(
               "Your file exceeds 10 MB, please compress your file and then try again."
             );
+          }
         } catch (e) {
           console.log(e);
           notify.error(

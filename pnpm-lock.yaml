@@ -29,9 +29,6 @@ dependencies:
   '@supabase/supabase-js':
     specifier: ^2.43.1
     version: 2.43.2
-  and:
-    specifier: ^0.0.3
-    version: 0.0.3
   axios:
     specifier: ^1.6.8
     version: 1.6.8
@@ -905,10 +902,6 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
-
-  /and@0.0.3:
-    resolution: {integrity: sha512-ns0tgq+jQFbDhAu5wrE+M7V87E4L3N8ZTJfRKVxafi7g0BSEM6JnwhL57HyR1XMHBeRfGPWZxq+SH1bZeUTiTw==}
-    dev: false
 
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
