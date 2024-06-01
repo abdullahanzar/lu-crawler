@@ -77,6 +77,9 @@ const MyForm = () => {
             size="small"
           >
             <MenuItem value="question paper">Question Paper</MenuItem>
+            <MenuItem value="midsem question paper">
+              Midsem Question Paper
+            </MenuItem>
             <MenuItem value="notes">Notes</MenuItem>
             <MenuItem value="forms">Forms</MenuItem>
             <MenuItem value="books">Books</MenuItem>
@@ -133,6 +136,7 @@ const MyForm = () => {
               <MenuItem value="cseai">CSE AI/ML</MenuItem>
               <MenuItem value="civil">Civil</MenuItem>
               <MenuItem value="mechanical">Mechanical</MenuItem>
+              <MenuItem value="others">Others</MenuItem>
             </Select>
           </FormControl>
         )}
@@ -153,7 +157,7 @@ const MyForm = () => {
                 Semester {index + 1}
               </MenuItem>
             ))}
-            <MenuItem>Not Applicable</MenuItem>
+            <MenuItem value="not-applicable">Not Applicable</MenuItem>
           </Select>
           {formik.touched.semester && formik.errors.semester && (
             <FormHelperText error>{formik.errors.semester}</FormHelperText>
