@@ -82,26 +82,26 @@ function Footer() {
               <div>
                 <ul className="space-y-3 text-base text-[#fff] font-normal font-['Inter']">
                   <li>
-                    <Link href="/">Your Account</Link>
+                    <Link href="/your-account">Your Account</Link>
                   </li>
                   <li>
-                    <Link href="/question-papers">Privacy Policy</Link>
+                    <Link href="/privacy-policy">Privacy Policy</Link>
                   </li>
                   <li>
-                    <Link href="/notes">FAQ</Link>
+                    <Link href="/faq">FAQ</Link>
                   </li>
                 </ul>
               </div>
               <div>
                 <ul className="space-y-3 text-base text-[#fff] font-normal font-['Inter']">
                   <li>
-                    <Link href="/forms">Contribute</Link>
+                    <Link href="/contribute">Contribute</Link>
                   </li>
                   <li>
-                    <Link href="/news">Develop</Link>
+                    <Link href="/develop">Develop</Link>
                   </li>
                   <li>
-                    <Link href="/contribute">About Us</Link>
+                    <Link href="/about-us">About Us</Link>
                   </li>
                 </ul>
               </div>
