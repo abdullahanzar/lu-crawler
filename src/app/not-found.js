@@ -15,7 +15,7 @@ export default function Home() {
           priority
         />
         <p>
-          Oops. Crawler couldn&apos;t crawl this page. Wanna go to{" "}
+          Oops. LU Crawler couldn&apos;t crawl this page. Wanna go to{" "}
           <Link href="/">home?</Link>
         </p>
       </div>
