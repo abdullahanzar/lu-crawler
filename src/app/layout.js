@@ -6,6 +6,7 @@ import Footer from "@/components/footer/footer";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
@@ -33,7 +34,7 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <Navbar />
-            {children}
+            <Suspense fallback={<>Crawling</>}>{children}</Suspense>
             <Footer />
             <Toaster
               position="top-center"

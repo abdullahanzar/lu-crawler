@@ -1,6 +1,5 @@
-import Image from "next/image";
-import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input";
 import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import Search from "./search";
 
 export default function EyeCatcher() {
   const words = [
@@ -47,22 +46,7 @@ export default function EyeCatcher() {
         Welcome to LU Crawler
       </p>
       <TypewriterEffectSmooth words={words} />
-      <PlaceholdersAndVanishInput
-        placeholders={[
-          "BCA LU Question Papers",
-          "BCA LU Midsem Papers",
-          "B.Tech LU Question Papers",
-          "Midsem LU Notes",
-          "B.Com Question Papers",
-          "Engineering Mathematics - 1 Question Papers",
-          "Professional Communication Notes",
-          "MCA LU Question Papers",
-          "BCA LU Semester 3 Notes",
-          "Engineering Mathematics - 2 Question Papers",
-          "Business Economics Notes and Question Papers",
-          "You search it, we find it.",
-        ]}
-      />
+      <Search />
     </div>
   );
 }
