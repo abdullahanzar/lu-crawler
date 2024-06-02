@@ -1,4 +1,6 @@
 "use client";
+import { notify } from "@/utils/notify";
+import { capitalizeEachWord } from "@/utils/string-manipulation";
 import { Button, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -12,6 +14,9 @@ export default function Entity() {
     if (encodedResult) {
       const result = JSON.parse(decodeURIComponent(encodedResult));
       setEntity(result);
+    } else {
+      notify.error("Oops. You shouldn't be here we suppose.");
+      router.push("/");
     }
   }, []);
 
@@ -20,13 +25,19 @@ export default function Entity() {
       <div className="flex flex-row m-6 justify-between">
         {entity?.name && (
           <div>
-            <p className="px-10 pt-2 text-4xl">{entity?.name}</p>
-            <p className="px-10 pt-2 text-2xl">{entity?.description}</p>
+            <p className="px-10 pt-2 text-4xl">
+              {capitalizeEachWord(entity?.name)}
+            </p>
+            <p className="px-10 pt-2 text-2xl">
+              {capitalizeEachWord(entity?.description)}
+            </p>
             <p className="px-10  text-xl">
               Course: {entity?.course?.toUpperCase()}
             </p>
             <p className="px-10  text-xl">Semester: {entity.semester}</p>
-            <p className="px-10  text-xl">Type: {entity.type}</p>
+            <p className="px-10  text-xl">
+              Type: {capitalizeEachWord(entity.type)}
+            </p>
           </div>
         )}
         <div>

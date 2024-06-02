@@ -20,11 +20,21 @@ export default function Navbar() {
         </div>
       </Link>
       <ul className="flex flex-row text-white">
-        <li className="pl-8 cursor-pointer">Question Papers</li>
-        <li className="pl-8 cursor-pointer">Midsem Papers</li>
-        <li className="pl-8 cursor-pointer">Notes</li>
-        <li className="pl-8 cursor-pointer">Forms</li>
-        <li className="pl-8 cursor-pointer">News</li>
+        <Link href={"/question-papers"}>
+          <li className="pl-8 cursor-pointer">Question Papers</li>
+        </Link>
+        <Link href={"/midsem-papers"}>
+          <li className="pl-8 cursor-pointer">Midsem Papers</li>
+        </Link>
+        <Link href={"/notes"}>
+          <li className="pl-8 cursor-pointer">Notes</li>
+        </Link>
+        <Link href={"/forms"}>
+          <li className="pl-8 cursor-pointer">Forms</li>
+        </Link>
+        <Link href={"/news"}>
+          <li className="pl-8 cursor-pointer">News</li>
+        </Link>
       </ul>
       {/*<SearchBox />*/}
       <NavbarButtons />
