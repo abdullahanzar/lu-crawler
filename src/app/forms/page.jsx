@@ -12,12 +12,14 @@ import {
 import { capitalizeEachWord } from "@/utils/string-manipulation";
 import Loader from "@/components/general/loader";
 import DescriptionIcon from "@mui/icons-material/Description";
+import { useRouter } from "next/navigation";
 
 const supabase = createSupabaseBrowserClient();
 
 export default function QuestionPaper() {
   const [results, setResults] = useState([]);
   const [loader, setLoader] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
