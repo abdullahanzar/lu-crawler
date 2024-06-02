@@ -32,7 +32,7 @@ export default function AboutUs() {
     },
     {
       text: "LU.",
-      className: "text-[#ab9898] dark:text-blue-500",
+      className: "text-[#ab9898]",
     },
   ];
   const description =
@@ -40,7 +40,7 @@ export default function AboutUs() {
   return (
     <main>
       <div className="flex flex-col items-center justify-center h-[40rem] ">
-        <p className="text-neutral-600 dark:text-neutral-200 text-3xl  mb-5">
+        <p className="text-neutral-600 text-3xl  mb-5">
           About Us
         </p>
         <TypewriterEffectSmooth words={words} />
