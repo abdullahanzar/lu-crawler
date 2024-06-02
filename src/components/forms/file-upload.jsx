@@ -48,7 +48,7 @@ function FileUpload({ setCloudinaryMetaData }) {
         } catch (e) {
           console.log(e);
           notify.error(
-            "We couldn't compress your file. Please compress the file to below 10 MB then try again."
+            "We couldn&apos;t compress your file. Please compress the file to below 10 MB then try again."
           );
         }
       }
