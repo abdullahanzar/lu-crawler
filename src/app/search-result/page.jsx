@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import { Grid, Card, CardContent, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { findCourseKey } from "@/utils/search-helper";
 
 const supabase = createSupabaseBrowserClient();
 
@@ -25,6 +26,14 @@ export default function SearchResult() {
         console.error("Error:", initialError);
         return;
       }
+      const { data: approximateData, error: approximateError } = await supabase
+        .from("documents")
+        .select("*")
+        .ilike("course", `%${findCourseKey(search.toLowerCase())}%`);
+      if (approximateError) {
+        console.error("Error:", approximateError);
+        return;
+      }
 
       const nameMatches = await searchIncludesAnyOf(searchArray, "name");
       const descriptionMatches = await searchIncludesAnyOf(
@@ -38,6 +47,7 @@ export default function SearchResult() {
         ...initialData,
         ...nameMatches,
         ...descriptionMatches,
+        ...approximateData,
       ];
 
       const uniqueResults = Array.from(
