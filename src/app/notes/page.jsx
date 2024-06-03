@@ -1,7 +1,6 @@
 "use client";
 import { createSupabaseBrowserClient } from "@/supabase/browserClient";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Card,
@@ -10,79 +9,38 @@ import {
   CardHeader,
   Stack,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { findCourseKey } from "@/utils/search-helper";
-import Loader from "@/components/general/loader";
-import Description from "@mui/icons-material/Description";
 import { capitalizeEachWord } from "@/utils/string-manipulation";
+import Loader from "@/components/general/loader";
+import DescriptionIcon from "@mui/icons-material/Description";
+import { useRouter } from "next/navigation";
 
 const supabase = createSupabaseBrowserClient();
 
-export default function SearchResult() {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("search");
+export default function Notes() {
+  const [results, setResults] = useState([]);
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
 
-  const searchArray = useMemo(() => search.split(" "), [search]);
-  const [loader, setLoader] = useState(false);
-  const [results, setResults] = useState([]);
-
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       setLoader(true);
-      const { data: initialData, error: initialError } = await supabase
+      const { data, error } = await supabase
         .from("documents")
         .select("*")
-        .ilike("name", `%${search}%`);
-      if (initialError) {
-        console.error("Error:", initialError);
-        return;
-      }
-      const { data: approximateData, error: approximateError } = await supabase
-        .from("documents")
-        .select("*")
-        .ilike("course", `%${findCourseKey(search.toLowerCase())}%`);
-      if (approximateError) {
-        console.error("Error:", approximateError);
-        return;
-      }
-
-      const nameMatches = await searchIncludesAnyOf(searchArray, "name");
-      const descriptionMatches = await searchIncludesAnyOf(
-        searchArray,
-        "description"
-      );
-      const courseMatches = await searchIncludesAnyOf(searchArray, "course");
-      const typeMatches = await searchIncludesAnyOf(searchArray, "type");
-
-      const combinedResults = [
-        ...courseMatches,
-        ...initialData,
-        ...nameMatches,
-        ...descriptionMatches,
-        ...approximateData,
-      ];
-
-      const uniqueResults = Array.from(
-        new Set(combinedResults.map((a) => JSON.stringify(a)))
-      ).map((b) => JSON.parse(b));
-
-      setResults(uniqueResults);
+        .eq("type", "notes");
+      setResults(data);
       setLoader(false);
-    };
-
-    fetchData();
-  }, [search, searchArray]);
-
+    })();
+  }, []);
   return (
     <main className="min-h-screen">
-      <p className="m-10 text-3xl">Showing search results for {search}</p>
+      <p className="m-10 text-3xl">Notes</p>
       {loader && <Loader />}
       {loader === false && results.length === 0 && (
         <div className="flex flex-col items-center justify-center h-[30rem] ">
           <p className="m-12 text-2xl">
-            We are really sorry. The Crawler couldn&apos;t find results for
-            this.
+            We are really sorry. The Crawler couldn&apos;t find any notes for
+            now.
           </p>
         </div>
       )}
@@ -110,7 +68,7 @@ export default function SearchResult() {
                     justifyContent={"center"}
                     alignItems={"center"}
                   >
-                    <Description />
+                    <DescriptionIcon />
                     <Typography>{capitalizeEachWord(result.type)}</Typography>
                   </Stack>
                 }
@@ -136,22 +94,4 @@ export default function SearchResult() {
       </Grid>
     </main>
   );
-}
-
-async function searchIncludesAnyOf(terms, column) {
-  // Construct the or query string
-  const orQuery = terms.map((term) => `${column}.ilike.%${term}%`).join(",");
-
-  // Perform the search
-  const { data, error } = await supabase
-    .from("documents")
-    .select("*")
-    .or(orQuery);
-
-  if (error) {
-    console.error("Error:", error);
-    return [];
-  }
-
-  return data;
 }
