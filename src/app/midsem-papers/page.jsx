@@ -13,11 +13,13 @@ import { capitalizeEachWord } from "@/utils/string-manipulation";
 import Loader from "@/components/general/loader";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useRouter } from "next/navigation";
+import Filter from "@/components/global/filter";
 
 const supabase = createSupabaseBrowserClient();
 
 export default function Notes() {
   const [results, setResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
 
@@ -29,12 +31,20 @@ export default function Notes() {
         .select("*")
         .eq("type", "midsem question paper");
       setResults(data);
+      setFilteredResults(data);
       setLoader(false);
     })();
   }, []);
   return (
     <main className="min-h-screen">
       <p className="m-10 text-3xl">Midsem Question Papers</p>
+      {!loader && results.length != 0 && (
+        <Filter
+          items={filteredResults}
+          setItems={setFilteredResults}
+          allItems={results}
+        />
+      )}
       {loader && <Loader />}
       {loader === false && results.length === 0 && (
         <div className="flex flex-col items-center justify-center h-[30rem] ">
@@ -44,8 +54,18 @@ export default function Notes() {
           </p>
         </div>
       )}
+      {loader === false &&
+        filteredResults.length === 0 &&
+        results.length != 0 && (
+          <div className="flex flex-col items-center justify-center h-[30rem] ">
+            <p className="m-12 text-2xl">
+              We are really sorry. The Crawler couldn&apos;t find any midsem
+              question papers matching the filter for now.
+            </p>
+          </div>
+        )}
       <Grid container spacing={3} className="p-10">
-        {results.map((result, index) => (
+        {filteredResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Card
               sx={{ cursor: "pointer" }}
