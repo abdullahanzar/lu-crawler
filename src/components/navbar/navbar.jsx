@@ -3,6 +3,9 @@ import Image from "next/image";
 import SearchBox from "./search-box";
 import { NavbarButtons } from "./navbar-buttons";
 import Link from "next/link";
+import { Drawer, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import MobileHamburger from "./mobile-hamburger";
 
 export default function Navbar() {
   return (
@@ -38,6 +41,7 @@ export default function Navbar() {
       </ul>
       {/*<SearchBox />*/}
       <NavbarButtons />
+      <MobileHamburger />
     </div>
   );
 }
