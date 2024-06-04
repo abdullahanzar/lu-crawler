@@ -7,7 +7,7 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section className="bg-[#000] text-white  sm:px-8 pt-4 pb-4">
+    <section className="bg-[#000] text-white px-7 sm:px-8 pt-4 pb-4">
       <div className="mx-auto">
         <Link href="/">
           <div className="flex flex-row items-center">

@@ -4,7 +4,7 @@ import React from "react";
 
 export const NavbarButtons = () => {
   return (
-    <div>
+    <div className="hidden sm:flex">
       <Button
         style={{
           backgroundColor: "#D5C8C8",

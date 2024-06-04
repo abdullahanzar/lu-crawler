@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
 import Search from "./search";
 
@@ -34,15 +35,17 @@ export default function EyeCatcher() {
   ];
   return (
     <div className="flex flex-col items-center justify-center h-[40rem] ">
-      {/*<Image
-        src="/crawler_black.svg"
-        alt="Crawler"
-        className="relative bottom-10"
-        width={60}
-        height={37}
-        priority
-  />*/}
-      <p className="text-neutral-600 text-3xl  mb-5">
+      {
+        <Image
+          src="/crawler_black.svg"
+          alt="Crawler"
+          className=" sm:hidden relative bottom-5"
+          width={60}
+          height={37}
+          priority
+        />
+      }
+      <p className="text-neutral-600 text-xl sm:text-3xl  mb-0 sm:mb-3">
         Welcome to LU Crawler
       </p>
       <TypewriterEffectSmooth words={words} />

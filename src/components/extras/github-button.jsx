@@ -9,7 +9,7 @@ const GithubLink = () => {
   return (
     <button
       onClick={handleClick}
-      className="flex items-center space-x-2 p-2 bg-gray-800 text-white rounded hover:bg-gray-700"
+      className="flex m-6 sm:m-0 items-center space-x-2 p-2 bg-gray-800 text-white rounded hover:bg-gray-700"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

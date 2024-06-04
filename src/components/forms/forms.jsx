@@ -61,7 +61,7 @@ const MyForm = () => {
   });
 
   return (
-    <div className="relative left-12 top-2 mt-4 text-[21px] w-3/6">
+    <div className="relative px-5 mb-4 sm:left-12 sm:top-2 sm:mt-4 sm:text-[21px] sm:w-3/6">
       <FileUpload setCloudinaryMetaData={setCloudinaryMetaData} />
       <form onSubmit={formik.handleSubmit}>
         <FormControl fullWidth margin="normal" size="small">
@@ -192,6 +192,7 @@ const MyForm = () => {
         />
         <Button
           type="submit"
+          sx={{marginTop: "5px"}}
           className="bg-black mt-3 hover:bg-white hover:text-black"
           variant="contained"
         >
