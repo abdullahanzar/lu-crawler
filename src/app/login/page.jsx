@@ -11,6 +11,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 const supabase = createSupabaseBrowserClient();
 
 export default function LogIn() {
+  console.log(getURL());
   return (
     <main className="min-h-screen">
       <Stack
