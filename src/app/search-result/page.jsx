@@ -1,22 +1,20 @@
 "use client";
+import Loader from "@/components/general/loader";
+import Filter from "@/components/global/filter";
 import { createSupabaseBrowserClient } from "@/supabase/browserClient";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
+import { findCourseKey } from "@/utils/search-helper";
+import { capitalizeEachWord } from "@/utils/string-manipulation";
+import Description from "@mui/icons-material/Description";
 import {
-  Grid,
   Card,
   CardContent,
-  Typography,
   CardHeader,
+  Grid,
   Stack,
+  Typography,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { findCourseKey } from "@/utils/search-helper";
-import Loader from "@/components/general/loader";
-import Description from "@mui/icons-material/Description";
-import { capitalizeEachWord } from "@/utils/string-manipulation";
-import DescriptionIcon from "@mui/icons-material/Description";
-import Filter from "@/components/global/filter";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 
 const supabase = createSupabaseBrowserClient();
@@ -64,6 +62,7 @@ export default function SearchResult() {
         ...initialData,
         ...nameMatches,
         ...descriptionMatches,
+        ...typeMatches,
         ...approximateData,
       ];
 
