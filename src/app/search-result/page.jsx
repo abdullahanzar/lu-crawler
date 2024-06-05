@@ -15,6 +15,9 @@ import { findCourseKey } from "@/utils/search-helper";
 import Loader from "@/components/general/loader";
 import Description from "@mui/icons-material/Description";
 import { capitalizeEachWord } from "@/utils/string-manipulation";
+import DescriptionIcon from "@mui/icons-material/Description";
+import Filter from "@/components/global/filter";
+
 
 const supabase = createSupabaseBrowserClient();
 
@@ -26,6 +29,7 @@ export default function SearchResult() {
   const searchArray = useMemo(() => search.split(" "), [search]);
   const [loader, setLoader] = useState(false);
   const [results, setResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +72,7 @@ export default function SearchResult() {
       ).map((b) => JSON.parse(b));
 
       setResults(uniqueResults);
+      setFilteredResults(uniqueResults);
       setLoader(false);
     };
 
@@ -76,7 +81,19 @@ export default function SearchResult() {
 
   return (
     <main className="min-h-screen">
-      <p className="m-10 text-3xl">Showing search results for {search}</p>
+      <p className="m-10 mb-2 text-3xl">Showing search results for {search}</p>
+      {!loader && results.length != 0 && (
+        <p className="ml-10 mb-2 text-xl">
+          LU Crawler found {results.length} results for this query.
+        </p>
+      )}
+      {!loader && results.length != 0 && (
+        <Filter
+          items={filteredResults}
+          setItems={setFilteredResults}
+          allItems={results}
+        />
+      )}
       {loader && <Loader />}
       {loader === false && results.length === 0 && (
         <div className="flex flex-col items-center justify-center h-[30rem] ">
@@ -86,8 +103,18 @@ export default function SearchResult() {
           </p>
         </div>
       )}
+      {loader === false &&
+        filteredResults.length === 0 &&
+        results.length != 0 && (
+          <div className="flex flex-col items-center justify-center h-[30rem] ">
+            <p className="m-12 text-2xl">
+              We are really sorry. The Crawler couldn&apos;t find any search
+              results matching the filter for now.
+            </p>
+          </div>
+        )}
       <Grid container spacing={3} className="p-10">
-        {results.map((result, index) => (
+        {filteredResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Card
               sx={{ cursor: "pointer" }}

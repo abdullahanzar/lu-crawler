@@ -23,10 +23,11 @@ const InstructionsCard = () => {
   return (
     <Card
       sx={{
-        width: 600,
-        marginRight: 2,
+        width: { xs: "100%", sm: 600 },
+        marginRight: { xs: 0, sm: 2 },
         background: "#D5C8C8",
-        maxHeight: "fit-content"
+        maxHeight: "fit-content",
+        padding: { xs: 1, sm: 0 },
       }}
     >
       <CardContent>
@@ -37,9 +38,9 @@ const InstructionsCard = () => {
           {instructions.map((text, index) => (
             <ListItem key={index} sx={{ py: 0 }}>
               <ListItemIcon>
-                <FiberManualRecord style={{width: 12}} className="w-1"/>
+                <FiberManualRecord style={{ width: 12 }} className="w-1" />
               </ListItemIcon>
-              <ListItemText  primary={text} />
+              <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>

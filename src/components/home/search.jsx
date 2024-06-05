@@ -10,7 +10,7 @@ export default function Search() {
     router.push(`/search-result?search=${search}`);
   };
   return (
-    <>
+    <div className="sm:min-w-full min-w-[90%]">
       <PlaceholdersAndVanishInput
         onChange={(e) => {
           setSearch(e.target.value);
@@ -31,6 +31,6 @@ export default function Search() {
           "You search it, we find it.",
         ]}
       />
-    </>
+    </div>
   );
 }

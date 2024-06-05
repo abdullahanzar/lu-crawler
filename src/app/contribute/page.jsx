@@ -5,7 +5,7 @@ import DocumentUploadForm from "@/components/forms/forms";
 export default function Contribute() {
   return (
     <main className="mb-12">
-      <div className="relative left-10 top-4 text-[21px] w-max">
+      <div className="relative text-lg p-4 sm:pl-1 sm:py-0 sm:left-10 sm:top-4 sm:text-[21px] sm:w-max">
         <p>
           Your contribution helps us to get the most up to date resources to
           students.
@@ -16,10 +16,10 @@ export default function Contribute() {
         </p>
         <p>Log In to contribute news and interact with the feed.</p>
       </div>
-      <div className="relative left-10 top-4 mt-4 text-2xl w-max">
+      <div className="relative text-xl pl-4 sm:pl-1 sm:py-0 sm:left-10 sm:top-4 sm:mt-4 sm:text-2xl sm:w-max">
         Wanna contribute anonymously?
       </div>
-      <div className="w-full h-max flex flex-row justify-between">
+      <div className="w-full h-max flex flex-col sm:flex-row justify-between">
         <DocumentUploadForm />
         {/* <div className="bg-[#D5C8C8] mt-4 w-[35rem] mr-4 rounded-lg">
           <div className="relative w-[34rem] p-4">
