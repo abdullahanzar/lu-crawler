@@ -105,7 +105,9 @@ export default function QuestionPaper() {
                   {capitalizeEachWord(result.type)}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {result.course.toUpperCase()}
+                  {result.course.toUpperCase() +
+                    " Semester " +
+                    String(result.semester)}
                 </Typography>
               </CardContent>
             </Card>

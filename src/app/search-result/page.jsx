@@ -16,7 +16,6 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-
 const supabase = createSupabaseBrowserClient();
 
 export default function SearchResult() {
@@ -153,7 +152,9 @@ export default function SearchResult() {
                   {capitalizeEachWord(result.type)}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {result.course.toUpperCase()}
+                  {result.course.toUpperCase() +
+                    " Semester " +
+                    String(result.semester)}
                 </Typography>
               </CardContent>
             </Card>
