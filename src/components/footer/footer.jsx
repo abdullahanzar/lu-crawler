@@ -82,7 +82,7 @@ function Footer() {
               <div>
                 <ul className="space-y-3 text-base text-[#fff] font-normal font-['Inter']">
                   <li>
-                    <Link href="/your-account">Your Account</Link>
+                    <Link href="/my-account">Your Account</Link>
                   </li>
                   <li>
                     <Link href="/privacy-policy">Privacy Policy</Link>

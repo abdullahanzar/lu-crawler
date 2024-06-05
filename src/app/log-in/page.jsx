@@ -3,7 +3,7 @@
 import { createSupabaseBrowserClient } from "@/supabase/browserClient";
 import theme from "@/theme";
 import { getURL } from "@/utils/helpers";
-import { Stack } from "@mui/material";
+import { CardHeader, Stack, Typography } from "@mui/material";
 import { Card } from "@mui/material";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
@@ -11,9 +11,8 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 const supabase = createSupabaseBrowserClient();
 
 export default function LogIn() {
-  console.log(getURL());
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen flex items-center justify-center">
       <Stack
         direction={"column"}
         justifyContent={"center"}
@@ -21,13 +20,28 @@ export default function LogIn() {
       >
         <Card
           sx={{
-            minWidth: { sm: "30%", xs: "80%" },
-            m: { sm: "100px", xs: "50px" },
+            minWidth: { sm: "80%", xs: "80%" },
             p: "20px",
             backgroundColor: "black",
             color: "white",
           }}
         >
+          <CardHeader
+            title={
+              <>
+                <Typography sx={{ color: "white" }} variant="playfair">
+                  Sign In
+                </Typography>
+              </>
+            }
+            subheader={
+              <Typography sx={{ color: "white" }} variant="playfair">
+                We are currently only providing signing in with your Google
+                Account. We plan to expand to more sign up options in the
+                future.
+              </Typography>
+            }
+          />
           <Auth
             supabaseClient={supabase}
             appearance={{
@@ -44,6 +58,7 @@ export default function LogIn() {
             providers={["google"]}
             theme="dark"
             redirectTo={getURL()}
+            onlyThirdPartyProviders
           />
         </Card>
       </Stack>
