@@ -11,10 +11,13 @@ import {
   Stack,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { findCourseKey } from "@/utils/search-helper";
 import Loader from "@/components/general/loader";
+import Description from "@mui/icons-material/Description";
 import { capitalizeEachWord } from "@/utils/string-manipulation";
 import DescriptionIcon from "@mui/icons-material/Description";
 import Filter from "@/components/global/filter";
+
 
 const supabase = createSupabaseBrowserClient();
 
@@ -39,6 +42,14 @@ export default function SearchResult() {
         console.error("Error:", initialError);
         return;
       }
+      const { data: approximateData, error: approximateError } = await supabase
+        .from("documents")
+        .select("*")
+        .ilike("course", `%${findCourseKey(search.toLowerCase())}%`);
+      if (approximateError) {
+        console.error("Error:", approximateError);
+        return;
+      }
 
       const nameMatches = await searchIncludesAnyOf(searchArray, "name");
       const descriptionMatches = await searchIncludesAnyOf(
@@ -53,7 +64,7 @@ export default function SearchResult() {
         ...initialData,
         ...nameMatches,
         ...descriptionMatches,
-        ...typeMatches,
+        ...approximateData,
       ];
 
       const uniqueResults = Array.from(
@@ -126,7 +137,7 @@ export default function SearchResult() {
                     justifyContent={"center"}
                     alignItems={"center"}
                   >
-                    <DescriptionIcon />
+                    <Description />
                     <Typography>{capitalizeEachWord(result.type)}</Typography>
                   </Stack>
                 }

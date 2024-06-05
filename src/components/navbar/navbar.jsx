@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Image from "next/image";
 import SearchBox from "./search-box";
 import { NavbarButtons } from "./navbar-buttons";
@@ -8,6 +9,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MobileHamburger from "./mobile-hamburger";
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="h-14 bg-black flex items-center justify-between">
       <Link href="/">
