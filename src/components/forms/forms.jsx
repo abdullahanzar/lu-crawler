@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   FormControl,
@@ -192,7 +193,7 @@ const MyForm = () => {
         />
         <Button
           type="submit"
-          sx={{marginTop: "5px"}}
+          sx={{ marginTop: "5px" }}
           className="bg-black mt-3 hover:bg-white hover:text-black"
           variant="contained"
         >

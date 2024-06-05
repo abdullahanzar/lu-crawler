@@ -9,6 +9,14 @@ import {
 } from "@mui/material";
 import theme from "@/theme";
 
+export const metadata = {
+  title: "Privacy Policy - LU Crawler",
+  description:
+    "Read the privacy policy of LU Crawler to understand how we handle your data and privacy.",
+  keywords: "privacy policy, LU Crawler, data protection, user privacy",
+  canonical: "https://lucrawler.in/privacy-policy",
+};
+
 const privacyPolicySections = [
   {
     title: "Welcome to our Privacy Policy Page",

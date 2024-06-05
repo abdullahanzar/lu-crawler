@@ -6,6 +6,14 @@ import {
   Typography,
 } from "@mui/material";
 
+export const metadata = {
+  title: "FAQ - LU Crawler",
+  description:
+    "Frequently asked questions about LU Crawler and how to use the platform.",
+  keywords: "FAQ, LU Crawler, frequently asked questions, help, support",
+  canonical: "https://lucrawler.in/faq",
+};
+
 const faqs = [
   {
     question: "What is this site about?",

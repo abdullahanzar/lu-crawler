@@ -1,0 +1,10 @@
+# Block all crawlers from /accounts
+User-agent: *
+Disallow: /my-account
+
+# Allow all crawlers to access the entire site except /accounts
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://lucrawler.in/sitemap.xml

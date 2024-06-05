@@ -1,6 +1,14 @@
-"use client";
 import InstructionsCard from "@/components/contribute/instructionsCard";
 import DocumentUploadForm from "@/components/forms/forms";
+
+export const metadata = {
+  title: "Contribute - LU Crawler",
+  description:
+    "Contribute to LU Crawler by sharing your question papers, notes, and other study materials to help fellow students.",
+  keywords:
+    "contribute, share resources, LU Crawler, question papers, notes, educational materials",
+  canonical: "https://lucrawler.in/contribute",
+};
 
 export default function Contribute() {
   return (

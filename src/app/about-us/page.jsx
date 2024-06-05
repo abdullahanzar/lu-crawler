@@ -4,6 +4,14 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "About Us - LU Crawler",
+  description:
+    "Learn more about LU Crawler, our mission, and the team behind the platform.",
+  keywords: "about us, LU Crawler, mission, team",
+  canonical: "https://lucrawler.in/about-us",
+};
+
 export default function AboutUs() {
   const words = [
     {
@@ -46,7 +54,7 @@ export default function AboutUs() {
         <div className="w-full sm:hidden">
           <TypewriterEffectSmooth words={words} />
         </div>
-        <TypewriterEffectSmooth words={words} className="hidden sm:flex"/>
+        <TypewriterEffectSmooth words={words} className="hidden sm:flex" />
         <TextGenerateEffect
           words={description}
           className="font-extralight sm:p-12 p-12 pt-0"

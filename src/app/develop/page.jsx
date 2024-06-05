@@ -5,6 +5,14 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Develop - LU Crawler",
+  description:
+    "Join the development community at LU Crawler and contribute to the platform's growth and improvement.",
+  keywords: "development, LU Crawler, contribute, coding, community",
+  canonical: "https://lucrawler.in/develop",
+};
+
 export default function AboutUs() {
   const words = [
     {
