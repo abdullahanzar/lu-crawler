@@ -5,6 +5,7 @@ import React from "react";
 export const NavbarButtons = () => {
   return (
     <div className="hidden sm:flex">
+      <Link href="/login">
       <Button
         style={{
           backgroundColor: "#D5C8C8",
@@ -17,6 +18,7 @@ export const NavbarButtons = () => {
       >
         Log In
       </Button>
+      </Link>
       <Link href="/contribute">
         <Button
           style={{

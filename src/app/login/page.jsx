@@ -2,6 +2,7 @@
 
 import { createSupabaseBrowserClient } from "@/supabase/browserClient";
 import theme from "@/theme";
+import { getURL } from "@/utils/helpers";
 import { Stack } from "@mui/material";
 import { Card } from "@mui/material";
 import { Auth } from "@supabase/auth-ui-react";
@@ -23,6 +24,7 @@ export default function LogIn() {
             m: { sm: "100px", xs: "50px" },
             p: "20px",
             backgroundColor: "black",
+            color: "white",
           }}
         >
           <Auth
@@ -40,6 +42,7 @@ export default function LogIn() {
             }}
             providers={["google"]}
             theme="dark"
+            redirectTo={getURL()}
           />
         </Card>
       </Stack>
